@@ -24,18 +24,17 @@ const signup = async (req, res) => {
         console.log(error.message);
     };
 };
+// console.log("req.user.capabilities ======================================:", req.user.capabilities)
 
 const allUser = async (req, res) => {
-    // console.log("req.user.capabilities ======================================:", req.user.capabilities)
     const users = await userModel.findAll();
     res.status(200).json(users)
 };
-
 const signin = async (req, res) => {
     const basicHeader = req.headers.authorization.split(' ');
     const encodedValue = basicHeader.pop();
     const decodedValue = base64.decode(encodedValue)
-    console.log(decodedValue)
+    // console.log(decodedValue)
     const [userName, password] = decodedValue.split(':');
 
     const user = await userModel.findOne({
@@ -51,7 +50,8 @@ const signin = async (req, res) => {
                 user: {
                     username: user.userName,
                     email: user.email,
-                    id: user.id
+                    id: user.id,
+                    role: user.role
                     },
                 token: user.token})
         } else {
