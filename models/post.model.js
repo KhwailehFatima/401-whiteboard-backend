@@ -7,7 +7,7 @@ const Post = (sequelize, DataTypes) => sequelize.define('Post', {
     },
     postContent: {
         type: DataTypes.STRING,
-        defaultValue: 'Just laugh!'
+        defaultValue: 'Just smile!'
     } 
 
 })
